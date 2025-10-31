@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shortcut Launcher App - Plano de Ação</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bg-dark text-white shadow-sm sticky-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
+        <a class="navbar-brand h3 mb-0" href="#">Leap Technology</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#fase1">Fase 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fase2">Fase 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fase3">Fase 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fase4">Fase 4</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fase5">Fase 5</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#fase6">Fase 6</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#cronograma">Cronograma</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center">
+            <button
+              id="theme-toggle"
+              class="btn btn-dark text-white-50 me-2"
+              aria-label="Alternar Tema"
+            >
+              <i class="bi bi-moon-fill"></i>
+            </button>
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#welcomeModal"
+            >
+              Saudação
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container my-5">
+      <h2 class="text-center mb-4">Plano de Ação: Shortcut Launcher App</h2>
+
+      <section class="card mb-4" id="fase1">
+        <div class="card-header h4">
+          🎯 FASE 1: PLANEJAMENTO E SETUP (Semana 1)
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">1.1 Setup do Ambiente</h5>
+          <pre><code class="language-kotlin">
+// build.gradle.kts (Module :app)
+dependencies {
+    // Compose BOM
+    implementation(platform("androidx.compose:compose-bom:2023.10.01"))
+    
+    // Compose
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.activity:activity-compose:1.8.2")
+    
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.5")
+    
+    // PDF Viewer
+    implementation("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+    
+    // EPUB Reader
+    implementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
+    
+    // Permissions
+    implementation("com.google.accompanist:accompanist-permissions:0.32.0")
+    
+    // Lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+}
+                </code></pre>
+
+          <h5 class="card-title mt-4">1.2 Estrutura de Pastas do Projeto</h5>
+          <pre><code class="language-text">
+app/
+├── src/main/java/com/yourname/shortcutlauncher/
+│   ├── ui/
+│   │   ├── components/
+│   │   ├── screens/
+│   │   └── theme/
+│   ├── data/
+│   │   ├── repositories/
+│   │   └── models/
+│   ├── domain/
+│   │   ├── use_cases/
+│   │   └── entities/
+│   └── utils/
+│       ├── FileUtils.kt
+│       └── PermissionsManager.kt
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase2">
+        <div class="card-header h4">
+          🏗️ FASE 2: INFRAESTRUTURA BÁSICA (Semana 2)
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">2.1 Configuração do Manifest</h5>
+          <pre><code class="language-xml">
+&lt;!-- AndroidManifest.xml --&gt;
+&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+&lt;uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /&gt;
+
+&lt;application&gt;
+    &lt;activity
+        android:name=".ui.MainActivity"
+        android:exported="true"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN" /&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+&lt;/application&gt;
+                </code></pre>
+
+          <h5 class="card-title mt-4">2.2 Tema Principal e Cores</h5>
+          <pre><code class="language-kotlin">
+// ui/theme/AppTheme.kt
+@Composable
+fun AppTheme(content: @Composable () -> Unit) {
+    MaterialTheme(
+        colorScheme = lightColorScheme(),
+        typography = Typography,
+        content = content
+    )
+}
+                </code></pre>
+
+          <h5 class="card-title mt-4">2.3 Modelos de Dados</h5>
+          <pre><code class="language-kotlin">
+// data/models/Shortcut.kt
+data class Shortcut(
+    val id: String,
+    val title: String,
+    val filePath: String,
+    val type: FileType,
+    val icon: Int,
+    val lastOpened: Long,
+    val appPackage: String? = null // para apps externos
+)
+
+enum class FileType {
+    PDF, EPUB, IMAGE, FOLDER, APP, OTHER
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase3">
+        <div class="card-header h4">
+          📁 FASE 3: GERENCIAMENTO DE ARQUIVOS (Semana 3-4)
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">3.1 Gerenciador de Permissões</h5>
+          <pre><code class="language-kotlin">
+// utils/PermissionsManager.kt
+@Composable
+fun RequestStoragePermission() {
+    val permissionState = rememberPermissionState(
+        android.Manifest.permission.READ_EXTERNAL_STORAGE
+    )
+    
+    if (!permissionState.hasPermission) {
+        LaunchedEffect(Unit) {
+            permissionState.launchPermissionRequest()
+        }
+    }
+}
+                </code></pre>
+
+          <h5 class="card-title mt-4">3.2 Navegador de Arquivos</h5>
+          <pre><code class="language-kotlin">
+// ui/screens/FileBrowserScreen.kt
+@Composable
+fun FileBrowserScreen(
+    onFileSelected: (File) -> Unit,
+    onFolderSelected: (File) -> Unit
+) {
+    var currentPath by remember { mutableStateOf(Environment.getExternalStorageDirectory()) }
+    
+    LazyColumn {
+        items(fileList) { file ->
+            FileItem(
+                file = file,
+                onClick = {
+                    if (file.isDirectory) {
+                        currentPath = file
+                        onFolderSelected(file)
+                    } else {
+                        onFileSelected(file)
+                    }
+                }
+            )
+        }
+    }
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase4">
+        <div class="card-header h4">
+          🏠 FASE 4: HOME SCREEN LAUNCHER (Semana 5-6)
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">4.1 Grid de Atalhos</h5>
+          <pre><code class="language-kotlin">
+// ui/screens/HomeScreen.kt
+@Composable
+fun HomeScreen(
+    shortcuts: List&lt;Shortcut&gt;,
+    onShortcutClick: (Shortcut) -> Unit,
+    onAddShortcut: () -> Unit
+) {
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = onAddShortcut) {
+                Icon(Icons.Default.Add, "Adicionar atalho")
+            }
+        }
+    ) { padding ->
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(4),
+            modifier = Modifier.padding(padding)
+        ) {
+            items(shortcuts) { shortcut ->
+                ShortcutItem(shortcut, onShortcutClick)
+            }
+        }
+    }
+}
+                </code></pre>
+
+          <h5 class="card-title mt-4">4.2 Item de Atalho</h5>
+          <pre><code class="language-kotlin">
+// ui/components/ShortcutItem.kt
+@Composable
+fun ShortcutItem(
+    shortcut: Shortcut,
+    onClick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .clickable { onClick() }
+            .padding(8.dp)
+    ) {
+        Icon(
+            imageVector = getIconForType(shortcut.type),
+            contentDescription = shortcut.title
+        )
+        Text(
+            text = shortcut.title,
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase5">
+        <div class="card-header h4">📖 FASE 5: VISUALIZADORES (Semana 7-8)</div>
+        <div class="card-body">
+          <h5 class="card-title">5.1 Visualizador de PDF</h5>
+          <pre><code class="language-kotlin">
+// ui/screens/PdfViewerScreen.kt
+@Composable
+fun PdfViewerScreen(
+    pdfPath: String,
+    onPageChanged: (Int) -> Unit,
+    initialPage: Int = 0
+) {
+    val pdfView = remember { PDFView(context, null) }
+    
+    AndroidView(
+        factory = { context ->
+            pdfView.fromFile(File(pdfPath))
+                .defaultPage(initialPage)
+                .onPageChange { page, _ ->
+                    onPageChanged(page)
+                }
+                .load()
+            pdfView
+        }
+    )
+}
+                </code></pre>
+
+          <h5 class="card-title mt-4">5.2 Visualizador de EPUB</h5>
+          <pre><code class="language-kotlin">
+// ui/screens/EpubViewerScreen.kt
+@Composable
+fun EpubViewerScreen(
+    epubPath: String,
+    onProgressSaved: (Double) -> Unit
+) {
+    // Implementação simplificada do leitor EPUB
+    // Usar biblioteca como EpubReader ou implementação customizada
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase6">
+        <div class="card-header h4">
+          💾 FASE 6: PERSISTÊNCIA DE DADOS (Semana 9)
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">6.1 Repository Pattern</h5>
+          <pre><code class="language-kotlin">
+// data/repositories/ShortcutRepository.kt
+class ShortcutRepository {
+    private val dataStore = context.createDataStore(name = "shortcuts_preferences")
+    
+    suspend fun saveShortcuts(shortcuts: List&lt;Shortcut&gt;) {
+        // Salvar usando DataStore
+    }
+    
+    suspend fun getShortcuts(): List&lt;Shortcut&gt; {
+        // Recuperar do DataStore
+    }
+    
+    suspend fun saveReadingProgress(filePath: String, progress: Double) {
+        // Salvar progresso de leitura
+    }
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase7">
+        <div class="card-header h4">🎨 FASE 7: UI/UX E ICONES (Semana 10)</div>
+        <div class="card-body">
+          <h5 class="card-title">7.1 Medidas de Ícones e Splash Screen</h5>
+          <pre><code class="language-kotlin">
+// ui/theme/IconSizes.kt
+object IconSizes {
+    val Small = 24.dp
+    val Medium = 48.dp
+    val Large = 96.dp
+    val Splash = 180.dp
+}
+
+// Splash Screen
+@Composable
+fun SplashScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            painter = painterResource(R.drawable.ic_launcher_foreground),
+            contentDescription = "App Logo",
+            modifier = Modifier.size(IconSizes.Splash),
+            tint = Color.White
+        )
+    }
+}
+                </code></pre>
+          <h5 class="card-title mt-4">7.2 Medidas Recomendadas para Ícones:</h5>
+          <ul>
+            <li>Launcher icon: 192x192 dp (xxxhdpi)</li>
+            <li>Splash icon: 180x180 dp</li>
+            <li>Shortcut icons: 48x48 dp</li>
+            <li>Action bar: 24x24 dp</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="fase8">
+        <div class="card-header h4">
+          🚀 FASE 8: TESTES E POLIMENTO (Semana 11-12)
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">8.1 Testes Básicos</h5>
+          <pre><code class="language-kotlin">
+// Testes de exemplo
+@Test
+fun `should create shortcut when file is selected`() {
+    val repository = FakeShortcutRepository()
+    val viewModel = ShortcutViewModel(repository)
+    
+    viewModel.addShortcut(testFile)
+    
+    assertThat(viewModel.shortcuts).hasSize(1)
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4" id="cronograma">
+        <div class="card-header h4">📋 CRONOGRAMA DETALHADO</div>
+        <div class="card-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Mês</th>
+                <th>Semanas</th>
+                <th>Atividades</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mês 1: Foundation</td>
+                <td>Semana 1-2</td>
+                <td>Setup, tema, estrutura básica</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Semana 3-4</td>
+                <td>Navegação de arquivos e permissões</td>
+              </tr>
+              <tr>
+                <td>Mês 2: Funcionalidades Core</td>
+                <td>Semana 5-6</td>
+                <td>Home screen e atalhos</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Semana 7-8</td>
+                <td>Visualizadores PDF/EPUB</td>
+              </tr>
+              <tr>
+                <td>Mês 3: Refinamento</td>
+                <td>Semana 9-10</td>
+                <td>Persistência e UI</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Semana 11-12</td>
+                <td>Testes e polimento</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card mb-4">
+        <div class="card-header h4">🛠 TECNOLOGIAS RECOMENDADAS</div>
+        <div class="card-body">
+          <pre><code class="language-kotlin">
+// Libs modernas e simples:
+dependencies {
+    // Jetpack Compose
+    "androidx.compose.ui:ui"
+    "androidx.compose.material3:material3"
+    "androidx.navigation:navigation-compose"
+    
+    // Lifecycle
+    "androidx.lifecycle:lifecycle-viewmodel-compose"
+    
+    // DataStore (simples que Room)
+    "androidx.datastore:datastore-preferences:1.0.0"
+    
+    // PDF Viewer
+    "com.github.barteksc:android-pdf-viewer:3.2.0-beta.1"
+    
+    // Permissions
+    "com.google.accompanist:accompanist-permissions:0.32.0"
+}
+                </code></pre>
+        </div>
+      </section>
+
+      <section class="card mb-4">
+        <div class="card-header h4">💡 DICAS PARA INICIANTE</div>
+        <div class="card-body">
+          <ul>
+            <li>Comece simples: Implemente uma funcionalidade por vez</li>
+            <li>Use previews: Teste componentes individualmente</li>
+            <li>Mantenha estados simples: Use remember e mutableStateOf</li>
+            <li>Teste em dispositivo real: Permissões funcionam melhor</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-dark text-white p-3 text-center">
+      <p class="mb-0">Desenvolvido por Leap In Technology</p>
+    </footer>
+
+    <div
+      class="modal fade"
+      id="welcomeModal"
+      tabindex="-1"
+      aria-labelledby="welcomeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="welcomeModalLabel">
+              Bem-vindo ao Projeto Shortcut Launcher App!
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Plano de ação detalhado para o desenvolvimento do aplicativo:
+            Shortcut Launcher App. <br />
+            <div class="content-img">
+              <img src="./img/Frame.png" alt="" />
+
+              <h1 class="name-title">Alfredo Allan</h1>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
